@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6233899b-8346-4e55-9684-a832220bb084" name="更改" comment="初始提交: 基本的多客户端聊天功能">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="6233899b-8346-4e55-9684-a832220bb084" name="更改" comment="README">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/client/SocketClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/client/SocketClient2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/client/threads/ClientGetThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/client/threads/ClientSendThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/client/threads/KeepAliveThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/server/threads/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/server/threads/ServerThread.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,9 +97,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.SocketService" />
         <item itemvalue="应用程序.SocketClient" />
         <item itemvalue="应用程序.SocketClient2" />
-        <item itemvalue="应用程序.SocketService" />
       </list>
     </recent_temporary>
   </component>
@@ -108,7 +113,7 @@
       <updated>1683530348291</updated>
       <workItem from="1683530352959" duration="2789000" />
       <workItem from="1683543036022" duration="7249000" />
-      <workItem from="1683597210965" duration="2216000" />
+      <workItem from="1683597210965" duration="4902000" />
     </task>
     <task id="LOCAL-00001" summary="初始提交: 基本的多客户端聊天功能">
       <created>1683598998087</created>
@@ -117,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683598998087</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="README">
+      <created>1683599439280</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1683599439280</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +148,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="初始提交: 基本的多客户端聊天功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="初始提交: 基本的多客户端聊天功能" />
+    <MESSAGE value="README" />
+    <option name="LAST_COMMIT_MESSAGE" value="README" />
   </component>
 </project>
