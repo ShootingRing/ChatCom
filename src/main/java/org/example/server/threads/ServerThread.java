@@ -1,12 +1,16 @@
 package org.example.server.threads;
 
+import org.example.common.entities.Login;
+import org.example.common.entities.OnlineSocketStream;
+import org.example.common.utils.Request;
 import org.example.server.SocketService;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
+
+import static org.example.common.utils.DataBuffer.br;
+import static org.example.common.utils.DataBuffer.gson;
+import static org.example.common.utils.RequestHandler.login;
 
 public class ServerThread implements Runnable {
     public Socket socket;
@@ -16,18 +20,31 @@ public class ServerThread implements Runnable {
     @Override
     public void run() {
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            while (true){
-                String str = br.readLine();
-                System.out.println(str);
-                for (Socket item : SocketService.socketList){
-                    PrintWriter pw = new PrintWriter(item.getOutputStream());
-                    pw.println(str);
-                    pw.flush();
+            OnlineSocketStream currentSocket = OnlineSocketStream.builder()
+                    .oos(new ObjectOutputStream(socket.getOutputStream()))
+                    .ois(new ObjectInputStream(socket.getInputStream()))
+                    .build();
+
+            while (socket.isConnected()){
+                try{
+                    Request req = (Request)currentSocket.getOis().readObject();
+                    System.out.println("request:" + gson.toJson(req));
+                    switch (req.type){
+                        case LOGIN:
+                            login(req.content, currentSocket);
+                            break;
+                        case REGISTER:
+                            break;
+                        default:
+                            break;
+                    }
+                }catch (Exception e){
+                    System.err.println("user " + socket.getInetAddress() + ":" + socket.getPort() + " disconnected!");
+                    break;
                 }
             }
         }catch(IOException e){
-//            e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }
