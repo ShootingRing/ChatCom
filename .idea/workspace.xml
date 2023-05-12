@@ -4,26 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6233899b-8346-4e55-9684-a832220bb084" name="更改" comment="服务端和客户端分离">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/common/entities/Login.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/common/entities/OnlineSocketStream.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/common/entities/Register.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/common/entities/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/common/utils/DataBuffer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/common/utils/Request.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/common/utils/RequestHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/common/utils/RequestType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/common/utils/Response.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/common/utils/ResponseCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/common/utils/UUIDGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/server/threads/RegisterThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/users_database.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uuid.csv" afterDir="false" />
+    <list default="true" id="6233899b-8346-4e55-9684-a832220bb084" name="更改" comment="- 完成Request和Response的封装且功能正常&#10;- 完成登录请求的处理">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/server/SocketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/server/SocketService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/server/threads/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/server/threads/ServerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/server/tools/ColorOutput.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,6 +138,7 @@
       <workItem from="1683717368982" duration="4826000" />
       <workItem from="1683773006051" duration="17752000" />
       <workItem from="1683857487644" duration="8835000" />
+      <workItem from="1683887596623" duration="700000" />
     </task>
     <task id="LOCAL-00001" summary="初始提交: 基本的多客户端聊天功能">
       <created>1683598998087</created>
@@ -177,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683602430961</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="- 完成Request和Response的封装且功能正常&#10;- 完成登录请求的处理">
+      <created>1683887660159</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1683887660159</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +189,7 @@
     <MESSAGE value="初始提交: 基本的多客户端聊天功能" />
     <MESSAGE value="README" />
     <MESSAGE value="服务端和客户端分离" />
-    <option name="LAST_COMMIT_MESSAGE" value="服务端和客户端分离" />
+    <MESSAGE value="- 完成Request和Response的封装且功能正常&#10;- 完成登录请求的处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="- 完成Request和Response的封装且功能正常&#10;- 完成登录请求的处理" />
   </component>
 </project>
