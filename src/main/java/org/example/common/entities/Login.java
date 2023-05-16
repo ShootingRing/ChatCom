@@ -12,7 +12,7 @@ import java.net.Socket;
 import java.util.List;
 import java.util.Objects;
 
-import static org.example.common.utils.DataBuffer.gson;
+import static org.example.common.utils.DataBuffer.*;
 import static org.example.common.utils.ResponseCode.SUCCESS;
 import static org.example.common.utils.ResponseCode.WRONG_PASSWORD_OR_ACCOUNT;
 
@@ -41,22 +41,14 @@ public class Login implements Serializable {
      * 服务端的登录请求处理
      */
     public void login(OnlineSocketStream currentSocket) {
-        try {
-            //读取Json文件
-            File json = new File(Objects.requireNonNull(User.class.getResource("/users_database.json")).getFile());
-            String content = FileUtils.readFileToString(json, "utf-8");
-            List<User> userList = gson.fromJson(content, new TypeToken<List<User>>(){}.getType());
-            User user = findUser(this, userList);
+        User user = findUser(this, userList);
 
-            new Response(
-                    user==null ? WRONG_PASSWORD_OR_ACCOUNT : SUCCESS,
-                    user==null ? "wrong account or password" : "login success",
-                    user
-            ).response(currentSocket);
+        new Response(
+                user==null ? WRONG_PASSWORD_OR_ACCOUNT : SUCCESS,
+                user==null ? "wrong account or password" : "login success",
+                user
+        ).response(currentSocket);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 }

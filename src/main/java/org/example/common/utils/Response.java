@@ -12,23 +12,25 @@ public class Response implements Serializable {
     private static final long serialVersionUID = -8504915906614662334L;
     public ResponseCode code;
     public String message;
-    public String data;
+    public Object data;
 
     public Response(ResponseCode code, String message, Object data){
         this.code = code;
         this.message = message;
-        this.data = gson.toJson(data);
+        this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "Response{" +
+                "code=" + code +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                '}';
     }
 
     public void response(OnlineSocketStream currentSocket) {
         try{
-            //返回response
-//            String res = gson.toJson(this);
-//
-//            if(!res.endsWith("\n")) {
-//                res += "\n";
-//            }
-
             Response response = new Response(
                     this.code,
                     this.message,
@@ -37,6 +39,8 @@ public class Response implements Serializable {
 
             currentSocket.getOos().writeObject(response);
             currentSocket.getOos().flush();
+
+            System.out.println("response:" + response.toString());
         }catch (IOException e){
             e.printStackTrace();
         }

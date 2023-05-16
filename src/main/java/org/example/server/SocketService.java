@@ -1,15 +1,22 @@
 package org.example.server;
 
+import com.google.gson.reflect.TypeToken;
+import org.apache.commons.io.FileUtils;
+import org.example.common.entities.User;
 import org.example.common.utils.DataBuffer;
 import org.example.common.utils.Response;
 import org.example.server.threads.ServerThread;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+import static org.example.common.utils.DataBuffer.*;
 import static org.example.common.utils.ResponseCode.SUCCESS;
 
 public class SocketService {
@@ -28,9 +35,10 @@ public class SocketService {
         );
         System.err.println("Socket Service Launch Successfully!!");
 
+        initData();
+
         while(true){
             Socket socket = serverSocket.accept();
-            DataBuffer.socket = socket;
             System.err.println("user " + socket.getInetAddress() + ":" + socket.getPort() + " linked!");
 
             socketList.add(socket);

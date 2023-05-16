@@ -1,15 +1,1 @@
-[
-    {
-        "username": "wiosier",
-        "account": "wiosier",
-        "password": "WOWring000",
-        "groupId": 0,
-        "uuid": "firstcc"
-    },{
-        "username": "user1",
-        "account": "user1",
-        "password": "pwd1",
-        "groupId": 0,
-        "uuid": "xswmjuk"
-    }
-]
+[{"username":"aaa","account":"aaa","password":"aaa","groupId":0,"uuid":"oF7uaAY"},{"username":"wiosier","account":"WOWring000","password":"wiosier","groupId":0,"uuid":"firstcc"}]

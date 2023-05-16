@@ -27,15 +27,6 @@ public class Request implements Serializable {
 
     public Response request() throws IOException {
         try {
-//            //发送请求
-//            String message = gson.toJson(this);
-//
-//            if(!message.endsWith("\n")) {
-//                message += "\n";
-//            }
-//
-//            pw.print(message);
-//            pw.flush();
 
             //使用writeObject发送
             Request request = new Request(

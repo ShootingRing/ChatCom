@@ -11,6 +11,7 @@ import java.net.Socket;
 import static org.example.common.utils.DataBuffer.br;
 import static org.example.common.utils.DataBuffer.gson;
 import static org.example.common.utils.RequestHandler.login;
+import static org.example.common.utils.RequestHandler.register;
 
 public class ServerThread implements Runnable {
     public Socket socket;
@@ -20,6 +21,7 @@ public class ServerThread implements Runnable {
     @Override
     public void run() {
         try {
+            System.out.println("creating SocketStream...");
             OnlineSocketStream currentSocket = OnlineSocketStream.builder()
                     .oos(new ObjectOutputStream(socket.getOutputStream()))
                     .ois(new ObjectInputStream(socket.getInputStream()))
@@ -34,11 +36,14 @@ public class ServerThread implements Runnable {
                             login(req.content, currentSocket);
                             break;
                         case REGISTER:
+                            System.out.println("registering...");
+                            register(req.content, currentSocket);
                             break;
                         default:
                             break;
                     }
                 }catch (Exception e){
+                    e.printStackTrace();
                     System.err.println("user " + socket.getInetAddress() + ":" + socket.getPort() + " disconnected!");
                     break;
                 }
