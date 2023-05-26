@@ -2,54 +2,57 @@ package org.example.server.threads;
 
 import org.example.common.entities.OnlineSocketStream;
 import org.example.common.utils.Request;
+import org.example.common.utils.RequestType;
 
 import java.io.*;
 import java.net.Socket;
 
 import static org.example.common.utils.DataBuffer.gson;
+import static org.example.common.utils.DataBuffer.socketMap;
 import static org.example.common.utils.RequestHandler.*;
 
-public class ServerThread implements Runnable {
+public class ChatThread implements Runnable {
+
     public Socket socket;
-    public ServerThread(Socket socket){
+
+    public ChatThread(Socket socket) {
         this.socket = socket;
     }
     @Override
     public void run() {
         try {
-            System.out.println("creating SocketStream...");
+            System.out.println("creating ChatSocketStream...");
             OnlineSocketStream currentSocket = OnlineSocketStream.builder()
                     .oos(new ObjectOutputStream(socket.getOutputStream()))
                     .ois(new ObjectInputStream(socket.getInputStream()))
                     .build();
+
+            Request hello = (Request)currentSocket.getOis().readObject(); //建立连接后首先由客户端发送HELLO请求并附带UUID信息，不返回响应
+            if(hello.type != RequestType.HELLO){
+                System.err.println("Something Wrong!");
+                System.err.flush();
+                return;
+            }
+            socketMap.put((String)hello.content, currentSocket); //建立socketMap(UUID -> OnlineSocketStream)
 
             while (socket.isConnected()){
                 try{
                     Request req = (Request)currentSocket.getOis().readObject();
                     System.out.println("request:" + gson.toJson(req));
                     switch (req.type){
-                        case LOGIN:
-                            login(req.content, currentSocket);
-                            break;
-                        case REGISTER:
-                            register(req.content, currentSocket);
-                            break;
-                        case GET_FRIENDS_LIST:
-                            getFriends(req.content, currentSocket);
-                            break;
-                        case GET_ONLINE_FRIENDS:
-                            getOnlineFriends(req.content, currentSocket);
+                        case SEND_MESSAGE:
+                            sendMessage(req.content, currentSocket);
                             break;
                         default:
                             break;
                     }
                 }catch (Exception e){
-                    System.err.println("user " + socket.getInetAddress() + ":" + socket.getPort() + " disconnected!");
+                    System.err.println("chatter " + socket.getInetAddress() + ":" + socket.getPort() + " disconnected!");
                     break;
                 }
             }
-        }catch(IOException e){
-            e.printStackTrace();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 }

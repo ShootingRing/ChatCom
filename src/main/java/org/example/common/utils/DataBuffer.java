@@ -3,6 +3,7 @@ package org.example.common.utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.apache.commons.io.FileUtils;
+import org.example.common.entities.OnlineSocketStream;
 import org.example.common.entities.User;
 
 import java.io.*;
@@ -18,6 +19,8 @@ public class DataBuffer {
 
     public static Map<String, User> userMap = new HashMap<>();
     public static List<User> userList = new ArrayList<>();
+    public static List<User> onlineList = new ArrayList<>();
+    public static Map<String, List<String>> friendsMap = new HashMap<>();
 
     public static BufferedReader br;
     public static ObjectOutputStream oos;
@@ -25,8 +28,11 @@ public class DataBuffer {
 
     public static final String USERS_JSON_ADDRESS = "users_database.json";
     public static final String UUID_JSON_ADDRESS = "uuid.json";
+    public static final String FRIENDS_JSON_ADDRESS = "users_friendList.json";
 
     public static List<String> uuidPool = new ArrayList<>();
+
+    public static Map<String, OnlineSocketStream> socketMap = new HashMap<>();
 
     public static boolean isUuidExist(String uuid){
         for (String id : uuidPool){
@@ -60,5 +66,8 @@ public class DataBuffer {
         //读取uuid
         String uuids = ReadJsonFile(UUID_JSON_ADDRESS);
         uuidPool = gson.fromJson(uuids, new TypeToken<List<String>>(){}.getType());
+
+        String friendsJson = ReadJsonFile(FRIENDS_JSON_ADDRESS);
+        friendsMap = gson.fromJson(friendsJson, new TypeToken<Map<String, List<String>>>(){}.getType());
     }
 }

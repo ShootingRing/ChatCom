@@ -43,6 +43,10 @@ public class Login implements Serializable {
     public void login(OnlineSocketStream currentSocket) {
         User user = findUser(this, userList);
 
+        if(user != null){
+            onlineList.add(user);
+        }
+
         new Response(
                 user==null ? WRONG_PASSWORD_OR_ACCOUNT : SUCCESS,
                 user==null ? "wrong account or password" : "login success",

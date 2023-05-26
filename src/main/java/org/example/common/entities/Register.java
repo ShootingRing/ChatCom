@@ -6,6 +6,8 @@ import org.example.common.utils.Response;
 import java.io.IOException;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static org.example.common.utils.DataBuffer.*;
@@ -30,9 +32,7 @@ public class Register implements Serializable {
     public void register(OnlineSocketStream currentSocket) throws IOException {
 
         //验证用户名或账号是否已存在
-        System.out.println("validating register data...");
         for (User item : userList){
-            System.out.println("userList viewing...");
             if(Objects.equals(item.username, username)){
                 System.out.println("username exists");
                 new Response(
@@ -64,11 +64,13 @@ public class Register implements Serializable {
                 groupId
         );
 
-        System.out.println("updateData...");
         userList.add(user);
+
+        List<String> emptyList = new ArrayList<>();
+        friendsMap.put(user.uuid, emptyList);
         WriteToJsonFile(gson.toJson(userList), USERS_JSON_ADDRESS);
         WriteToJsonFile(gson.toJson(uuidPool), UUID_JSON_ADDRESS);
-
+        WriteToJsonFile(gson.toJson(friendsMap), FRIENDS_JSON_ADDRESS);
         updateData();
 
         System.out.println("register success");
